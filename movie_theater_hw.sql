@@ -29,8 +29,15 @@ CREATE TABLE tickets(
     REFERENCES customers(cust_id) 
 );
 
+SELECT * FROM tickets;
+
 ALTER TABLE tickets DROP COLUMN theater_num;
 ALTER TABLE tickets ADD theater_num INTEGER REFERENCES movies(theater_num);
+
+INSERT INTO tickets(movie_title, theater_num, cust_id) VALUES
+    ('Dodgeball', 3),
+    ('Inception', 1),
+    ('Wreck It Ralph', 2);
 
 
 --create movies TABLE
@@ -72,3 +79,10 @@ WHERE movie_id = 4;
 ALTER TABLE tickets
 ADD FOREIGN KEY(theater_num)
 REFERENCES movies(theater_num);
+
+CREATE TABLE concessions(
+    concession_id SERIAL PRIMARY KEY,
+    name_ VARCHAR(50),
+    price DECIMAL(4,2),
+    item_desc VARCHAR(250)
+);
